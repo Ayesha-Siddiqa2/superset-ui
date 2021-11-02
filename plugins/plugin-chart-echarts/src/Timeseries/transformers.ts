@@ -173,16 +173,17 @@ export function transformSeries(
     // @ts-ignore
     type: plotType,
     smooth: seriesType === 'smooth',
+    triggerLineEvent: true,
     // @ts-ignore
     step: ['start', 'middle', 'end'].includes(seriesType as string) ? seriesType : undefined,
     stack: stackId,
     lineStyle,
-    areaStyle: {
-      opacity:
-        forecastSeries.type === ForecastSeriesEnum.ForecastUpper || area
-          ? opacity * areaOpacity
-          : 0,
-    },
+    areaStyle: area
+      ? {
+          opacity:
+            forecastSeries.type === ForecastSeriesEnum.ForecastUpper ? opacity * areaOpacity : 0,
+        }
+      : undefined,
     emphasis,
     showSymbol,
     symbolSize: markerSize,
